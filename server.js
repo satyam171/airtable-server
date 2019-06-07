@@ -5,7 +5,7 @@ var app = express()
 var Airtable = require('airtable');
 var base = new Airtable({apiKey: 'keyU759hT08CdEqKf'}).base('appiONft8AsUiUstg');
 
-const PORT  = 8080 || process.env.PORT; 
+const port  = process.env.PORT || 8080; 
 
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
@@ -52,6 +52,6 @@ app.put('/update-record', function(req, res) {
 //     });
 // })
 
-app.listen(PORT, ()=> {
-    console.log('Server started on port 8080!')
+app.listen(port, ()=> {
+    console.log('Server started on port', port); 
 })
