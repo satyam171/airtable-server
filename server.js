@@ -52,6 +52,6 @@ app.put('/update-record', function(req, res) {
 //     });
 // })
 
-app.listen(8080, ()=> {
+app.listen(PORT, ()=> {
     console.log('Server started on port 8080!')
 })
