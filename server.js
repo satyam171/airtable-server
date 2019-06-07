@@ -5,6 +5,8 @@ var app = express()
 var Airtable = require('airtable');
 var base = new Airtable({apiKey: 'keyU759hT08CdEqKf'}).base('appiONft8AsUiUstg');
 
+const PORT  = 8080 || process.env.PORT; 
+
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
