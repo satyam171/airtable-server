@@ -1,4 +1,5 @@
 var express = require('express')
+var cors = require('cors')
 var app = express()
 
 // Airtable configuration
@@ -7,6 +8,7 @@ var base = new Airtable({apiKey: 'keyU759hT08CdEqKf'}).base('appiONft8AsUiUstg')
 
 const port  = process.env.PORT || 8080; 
 
+app.use(cors()); 
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
@@ -36,21 +38,12 @@ app.put('/update-record', function(req, res) {
           return;
         }
         res.send(JSON.stringify({
+            id : record.id,
             date : record.get('date'), 
             stock_price : record.get('stock_price')
         })); 
     });
 })
-
-// app.delete('/delete-record', function(req, res) {
-//     base('Stock Price Table').destroy(req.body.id, function(err, deletedRecord) {
-//         if (err) {
-//           console.error(err);
-//           return;
-//         }
-//         res.send(deletedRecord.id); 
-//     });
-// })
 
 app.listen(port, ()=> {
     console.log('Server started on port', port); 
